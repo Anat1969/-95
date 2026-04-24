@@ -1,0 +1,41 @@
+[
+  {
+    "id": "urban95",
+    "tag": "U95",
+    "name": "Urban95 — קרן ברנרד ון ליר",
+    "subtitle": "ערים ידידותיות לילדות וילדים: הנחיות תכנון ועיצוב בישראל",
+    "year": "2023",
+    "description": "מסמך הנחיות מקיף שנכתב על ידי צוות רב-תחומי: מתכנני ערים, מומחית להתפתחות הילד ויועצת אקדמית. מכסה את כל שלבי התכנון — מתכניות מתאר ועד פרטי ביצוע כמו חומרים, צבעים ועיצוב מדרגות.",
+    "url": "https://vanleerfoundation.org/he/publications-reports/urban95-israel-guidelines/",
+    "pdfUrl": "https://vanleerfoundation.org/wp-content/uploads/2023/04/Child-friendly_cities_HEB_Web_Cover_light_NEW.pdf",
+    "topics": ["גנים ופארקים", "רחוב וניידות", "מגורים", "מבני ציבור", "תכנון כולל"],
+    "accentColor": "#2D4A3E",
+    "principleIds": ["sightline", "stroller-access", "shade", "surface-texture", "adult-seating", "traffic-separation", "walking-distance", "window-height", "nature-element", "zoning-clarity", "lighting-safety"]
+  },
+  {
+    "id": "moe",
+    "tag": "MOE",
+    "name": "משרד החינוך — אגף מיפוי ותכנון",
+    "subtitle": "הנחיות ועקרונות תכנון מוסדות חינוך",
+    "year": "מעודכן שוטף",
+    "description": "פרוגרמות מחייבות, חוזרי מנכ״ל ותקנים לתכנון גני ילדים, מעונות יום ובתי ספר. כולל: גדלי חדרי לימוד, חצרות, שירותים, בטיחות ובנייה ירוקה. האגף אחראי על אישור כל התוכניות האדריכליות.",
+    "url": "https://pituach.education.gov.il/about-agaf/planning-guidelines/",
+    "pdfUrl": null,
+    "topics": ["פרוגרמה לגן ילדים", "מעונות יום", "בתי ספר", "בטיחות", "בנייה ירוקה"],
+    "accentColor": "#3E5C8C",
+    "principleIds": ["stroller-access", "shade", "traffic-separation", "walking-distance", "zoning-clarity", "kindergarten-area", "lighting-safety"]
+  },
+  {
+    "id": "moeconstruction",
+    "tag": "POB",
+    "name": "משרד החינוך — פורטל רשויות",
+    "subtitle": "נהלים, טפסים ותהליכי תכנון ובינוי",
+    "year": "מעודכן שוטף",
+    "description": "כלל חוזרי המנכ״ל, נהלי תכנון ואישור, ותהליכי הגשה לאגף מיפוי ותכנון. רלוונטי לרשויות מקומיות ואדריכלים המגישים תוכניות לאישור. כולל נהלים ייעודיים למעונות יום.",
+    "url": "https://pob.education.gov.il/institutions/main-construction/",
+    "pdfUrl": null,
+    "topics": ["תוכניות אדריכליות", "בקשות בנייה", "מעונות יום", "מבנים יבילים", "נהלי הגשה"],
+    "accentColor": "#8C5C3E",
+    "principleIds": ["kindergarten-area"]
+  }
+]
