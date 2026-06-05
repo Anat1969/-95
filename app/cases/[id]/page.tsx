@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import cases from '@/data/cases.json'
 import principles from '@/data/principles.json'
-import { BackButton } from '@/components/BackButton'
 import { PrincipleCard } from '@/components/PrincipleCard'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
 

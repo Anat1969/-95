@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect, useMemo } from 'react'
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import principles from '@/data/principles.json'
 import { calcCompliance } from '@/lib/utils'
