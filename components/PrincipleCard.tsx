@@ -107,19 +107,17 @@ export function PrincipleCard({ principle, imageUrl, onImageUploaded }: Principl
           }}
         >
           {/* Background image */}
-          {imageUrl && (
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                backgroundImage: `url(${imageUrl})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                opacity: 0.12,
-                transition: 'var(--transition-base)',
-              }}
-            />
-          )}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: `url(${imageUrl || `/images/principles/${principle.id}.png`})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              opacity: 0.12,
+              transition: 'var(--transition-base)',
+            }}
+          />
 
           {/* Card content — above background */}
           <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: 'var(--space-4)', flex: 1 }}>
@@ -161,7 +159,7 @@ export function PrincipleCard({ principle, imageUrl, onImageUploaded }: Principl
             </p>
 
             <div style={{ marginTop: 'auto' }}>
-              <DimensionBadge dimension={principle.dimension} accentColor={principle.accentColor} principleId={principle.id} />
+              <DimensionBadge dimension={principle.dimension} accentColor={principle.accentColor} principleId={principle.id} size="lg" />
             </div>
 
             {principle.tags && principle.tags.length > 0 && (
