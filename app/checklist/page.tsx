@@ -177,27 +177,52 @@ export default function ChecklistPage() {
               style={{
                 background: 'var(--white)',
                 border: 'var(--border)',
-                padding: 'var(--space-6)',
+                padding: 0,
                 marginBottom: 'var(--space-4)',
                 display: 'grid',
-                gridTemplateColumns: '1fr auto auto auto auto',
-                gap: 'var(--space-4)',
+                gridTemplateColumns: '100px 1fr auto auto auto auto',
                 alignItems: 'center',
               }}
             >
-              {/* Left: Title + requirement */}
-              <div>
-                <div
+              {/* Image thumbnail */}
+              <Link
+                href={`/principles/${principle.id}`}
+                style={{
+                  display: 'block',
+                  width: '100px',
+                  height: '100%',
+                  minHeight: '90px',
+                  overflow: 'hidden',
+                }}
+              >
+                <img
+                  src={`/images/principles/${principle.id}.png`}
+                  alt={principle.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
+              </Link>
+
+              {/* Title + summary */}
+              <div style={{ padding: 'var(--space-4) var(--space-5)' }}>
+                <Link
+                  href={`/principles/${principle.id}`}
                   style={{
                     fontSize: 'var(--text-sm)',
                     fontFamily: 'var(--font-sans)',
                     fontWeight: 'var(--weight-bold)',
                     color: 'var(--ink)',
                     marginBottom: 'var(--space-2)',
+                    display: 'block',
+                    textDecoration: 'none',
                   }}
                 >
                   {principle.title}
-                </div>
+                </Link>
                 <div
                   style={{
                     fontSize: 'var(--text-xs)',
@@ -329,19 +354,6 @@ export default function ChecklistPage() {
               >
                 ל״ר
               </button>
-
-              {/* Link to detail */}
-              <Link
-                href={`/principles/${principle.id}`}
-                style={{
-                  fontSize: 'var(--text-sm)',
-                  color: 'var(--forest)',
-                  textDecoration: 'underline',
-                  cursor: 'pointer',
-                }}
-              >
-                →
-              </Link>
             </div>
           ))}
         </div>
