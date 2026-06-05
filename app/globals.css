@@ -1,0 +1,7 @@
+@import '../styles/tokens.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hover-border:hover { border-color: var(--ink) !important; }
+.hover-border { transition: border-color var(--transition-base); }
