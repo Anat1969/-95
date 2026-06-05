@@ -29,10 +29,11 @@ export default function CasesPage() {
               fontSize: 'var(--text-base)',
               color: 'var(--earth)',
               lineHeight: 'var(--leading-loose)',
-              maxWidth: '600px',
+              maxWidth: '700px',
             }}
           >
-            דוגמאות מעשיות של פרויקטים בישראל שהיישמו את העקרונות בהצלחה.
+            דוגמאות מעשיות של פרויקטים בישראל שהיישמו את העקרונות בהצלחה. כל מקרה מציג
+            יישום אמיתי, המאתגרים, והעקרונות המרכזיים שהשפיעו על התיכנון.
           </p>
         </div>
 

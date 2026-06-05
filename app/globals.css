@@ -58,4 +58,42 @@ input:focus-visible {
   a {
     min-height: 44px;
   }
+
+  /* Grid adjustments for mobile */
+  .grid-3,
+  .grid-2 {
+    gap: var(--space-3);
+  }
+
+  /* Reduce padding on mobile */
+  .container {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  body {
+    --page-x: 5vw;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
