@@ -175,78 +175,102 @@ export default function ChecklistPage() {
             <div
               key={principle.id}
               style={{
-                background: `${principle.accentColor}0D`,
+                background: `${principle.accentColor}12`,
                 border: 'var(--border)',
                 padding: 0,
                 marginBottom: 'var(--space-4)',
                 display: 'grid',
-                gridTemplateColumns: '1fr auto',
+                gridTemplateColumns: '110px 1fr auto auto',
                 alignItems: 'stretch',
+                minHeight: '110px',
               }}
             >
-              {/* Main content area */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
-                {/* Large dimension badge */}
-                <div
+              {/* Image thumbnail */}
+              <Link
+                href={`/principles/${principle.id}`}
+                style={{
+                  display: 'block',
+                  width: '110px',
+                  overflow: 'hidden',
+                  alignSelf: 'stretch',
+                }}
+              >
+                <img
+                  src={`/images/principles/${principle.id}.png`}
+                  alt={principle.title}
                   style={{
-                    background: principle.accentColor,
-                    color: 'var(--white)',
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 'var(--text-3xl)',
-                    fontWeight: 'var(--weight-bold)',
-                    padding: 'var(--space-6) var(--space-8)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    minWidth: '180px',
-                    textAlign: 'center',
-                    lineHeight: 1.1,
-                    alignSelf: 'stretch',
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    display: 'block',
+                  }}
+                />
+              </Link>
+
+              {/* Title + summary */}
+              <div style={{ padding: 'var(--space-4) var(--space-5)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <Link
+                  href={`/principles/${principle.id}`}
+                  style={{
+                    fontSize: 'var(--text-lg)',
+                    fontFamily: 'var(--font-serif)',
+                    fontWeight: 'var(--weight-regular)',
+                    color: 'var(--ink)',
+                    marginBottom: 'var(--space-2)',
+                    display: 'block',
+                    textDecoration: 'none',
                   }}
                 >
-                  {principle.dimension}
-                </div>
-
-                {/* Title + summary */}
-                <div style={{ padding: 'var(--space-5) var(--space-6)', flex: 1 }}>
-                  <Link
-                    href={`/principles/${principle.id}`}
-                    style={{
-                      fontSize: 'var(--text-lg)',
-                      fontFamily: 'var(--font-serif)',
-                      fontWeight: 'var(--weight-regular)',
-                      color: 'var(--ink)',
-                      marginBottom: 'var(--space-2)',
-                      display: 'block',
-                      textDecoration: 'none',
-                    }}
-                  >
-                    {principle.title}
-                  </Link>
-                  <div
-                    style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--earth)',
-                      lineHeight: 'var(--leading-normal)',
-                    }}
-                  >
-                    {principle.summary}
-                  </div>
+                  {principle.title}
+                </Link>
+                <div
+                  style={{
+                    fontSize: 'var(--text-sm)',
+                    color: 'var(--earth)',
+                    lineHeight: 'var(--leading-normal)',
+                  }}
+                >
+                  {principle.summary}
                 </div>
               </div>
 
-              {/* Minimal check buttons */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2px', padding: '0 var(--space-3)' }}>
+              {/* Large dimension — no background, just big text */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 'var(--space-4) var(--space-6)',
+                  minWidth: '140px',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                    fontWeight: 'var(--weight-bold)',
+                    color: principle.accentColor,
+                    lineHeight: 1,
+                    textAlign: 'center',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {principle.dimension}
+                </span>
+              </div>
+
+              {/* Minimal check buttons — vertical stack */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '2px', padding: 'var(--space-2) var(--space-3)' }}>
                 <button
                   onClick={() => handleCheck(principle.id, checks[principle.id] === 'yes' ? null : 'yes')}
                   title="עמדה בדרישה"
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '28px',
+                    height: '28px',
                     background: checks[principle.id] === 'yes' ? 'var(--forest)' : 'transparent',
                     color: checks[principle.id] === 'yes' ? 'var(--white)' : 'var(--earth)',
                     border: checks[principle.id] === 'yes' ? '1px solid var(--forest)' : '1px solid var(--fog)',
-                    fontSize: 'var(--text-sm)',
+                    fontSize: 'var(--text-xs)',
                     cursor: 'pointer',
                     transition: 'var(--transition-base)',
                     borderRadius: '0',
@@ -263,12 +287,12 @@ export default function ChecklistPage() {
                   onClick={() => handleCheck(principle.id, checks[principle.id] === 'no' ? null : 'no')}
                   title="לא עמדה בדרישה"
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '28px',
+                    height: '28px',
                     background: checks[principle.id] === 'no' ? 'var(--error)' : 'transparent',
                     color: checks[principle.id] === 'no' ? 'var(--white)' : 'var(--earth)',
                     border: checks[principle.id] === 'no' ? '1px solid var(--error)' : '1px solid var(--fog)',
-                    fontSize: 'var(--text-sm)',
+                    fontSize: 'var(--text-xs)',
                     cursor: 'pointer',
                     transition: 'var(--transition-base)',
                     borderRadius: '0',
@@ -285,12 +309,12 @@ export default function ChecklistPage() {
                   onClick={() => handleCheck(principle.id, checks[principle.id] === 'na' ? null : 'na')}
                   title="לא רלוונטי"
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '28px',
+                    height: '28px',
                     background: checks[principle.id] === 'na' ? 'var(--earth)' : 'transparent',
                     color: checks[principle.id] === 'na' ? 'var(--white)' : 'var(--earth)',
                     border: checks[principle.id] === 'na' ? '1px solid var(--earth)' : '1px solid var(--fog)',
-                    fontSize: 'var(--text-xs)',
+                    fontSize: '9px',
                     cursor: 'pointer',
                     transition: 'var(--transition-base)',
                     borderRadius: '0',
