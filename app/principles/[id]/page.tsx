@@ -7,6 +7,7 @@ import { BackButton } from '@/components/BackButton'
 import { DimensionBadge } from '@/components/DimensionBadge'
 import { SourceBadge } from '@/components/SourceBadge'
 import { PrincipleCard } from '@/components/PrincipleCard'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 import { getRelatedPrinciples } from '@/lib/utils'
 
 export async function generateStaticParams() {
@@ -53,9 +54,15 @@ export default function PrincipleDetailPage({
   return (
     <div style={{ padding: 'var(--page-x)' }}>
       <div className="container">
-        {/* Back button */}
+        {/* Breadcrumbs */}
         <div style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-6)' }}>
-          <BackButton href="/principles" label="חזרה לעקרונות" />
+          <Breadcrumbs
+            items={[
+              { label: '95° Guide', href: '/' },
+              { label: 'עקרונות', href: '/principles' },
+              { label: principle.title, href: `/principles/${principle.id}` },
+            ]}
+          />
         </div>
 
         {/* Hero section */}

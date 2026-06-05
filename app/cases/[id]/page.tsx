@@ -4,6 +4,7 @@ import cases from '@/data/cases.json'
 import principles from '@/data/principles.json'
 import { BackButton } from '@/components/BackButton'
 import { PrincipleCard } from '@/components/PrincipleCard'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
 
 export async function generateStaticParams() {
   return (cases as any).map((c: any) => ({
@@ -46,9 +47,15 @@ export default function CaseDetailPage({
   return (
     <div style={{ padding: 'var(--page-x)' }}>
       <div className="container">
-        {/* Back button */}
+        {/* Breadcrumbs */}
         <div style={{ marginTop: 'var(--space-6)', marginBottom: 'var(--space-6)' }}>
-          <BackButton href="/cases" label="חזרה למקרי בוחן" />
+          <Breadcrumbs
+            items={[
+              { label: '95° Guide', href: '/' },
+              { label: 'מקרי בוחן', href: '/cases' },
+              { label: caseStudy.name, href: `/cases/${caseStudy.id}` },
+            ]}
+          />
         </div>
 
         {/* Hero section */}
