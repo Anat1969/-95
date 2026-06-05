@@ -227,21 +227,25 @@ export default function ChecklistPage() {
               {/* Buttons: Yes, No, NA */}
               <button
                 onClick={() => handleCheck(principle.id, 'yes')}
+                title="עמדה בדרישה"
                 style={{
-                  padding: 'var(--space-2) var(--space-4)',
+                  padding: 'var(--space-3) var(--space-4)',
                   background: checks[principle.id] === 'yes' ? 'var(--forest)' : 'var(--fog)',
                   color: checks[principle.id] === 'yes' ? 'var(--white)' : 'var(--ink)',
-                  border: 'none',
-                  fontSize: 'var(--text-sm)',
+                  border: checks[principle.id] === 'yes' ? '1px solid var(--forest)' : '1px solid transparent',
+                  fontSize: 'var(--text-base)',
                   fontWeight: 'var(--weight-bold)',
                   cursor: 'pointer',
                   transition: 'var(--transition-base)',
+                  borderRadius: '0',
+                  minWidth: '48px',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (checks[principle.id] !== 'yes') {
                     el.style.background = 'var(--forest)'
                     el.style.color = 'var(--white)'
+                    el.style.borderColor = 'var(--forest)'
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -249,6 +253,7 @@ export default function ChecklistPage() {
                   if (checks[principle.id] !== 'yes') {
                     el.style.background = 'var(--fog)'
                     el.style.color = 'var(--ink)'
+                    el.style.borderColor = 'transparent'
                   }
                 }}
               >
@@ -257,21 +262,25 @@ export default function ChecklistPage() {
 
               <button
                 onClick={() => handleCheck(principle.id, 'no')}
+                title="לא עמדה בדרישה"
                 style={{
-                  padding: 'var(--space-2) var(--space-4)',
+                  padding: 'var(--space-3) var(--space-4)',
                   background: checks[principle.id] === 'no' ? 'var(--error)' : 'var(--fog)',
                   color: checks[principle.id] === 'no' ? 'var(--white)' : 'var(--ink)',
-                  border: 'none',
-                  fontSize: 'var(--text-sm)',
+                  border: checks[principle.id] === 'no' ? '1px solid var(--error)' : '1px solid transparent',
+                  fontSize: 'var(--text-base)',
                   fontWeight: 'var(--weight-bold)',
                   cursor: 'pointer',
                   transition: 'var(--transition-base)',
+                  borderRadius: '0',
+                  minWidth: '48px',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (checks[principle.id] !== 'no') {
                     el.style.background = 'var(--error)'
                     el.style.color = 'var(--white)'
+                    el.style.borderColor = 'var(--error)'
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -279,6 +288,7 @@ export default function ChecklistPage() {
                   if (checks[principle.id] !== 'no') {
                     el.style.background = 'var(--fog)'
                     el.style.color = 'var(--ink)'
+                    el.style.borderColor = 'transparent'
                   }
                 }}
               >
@@ -287,22 +297,26 @@ export default function ChecklistPage() {
 
               <button
                 onClick={() => handleCheck(principle.id, 'na')}
+                title="לא רלוונטי"
                 style={{
-                  padding: 'var(--space-2) var(--space-4)',
+                  padding: 'var(--space-3) var(--space-4)',
                   background: checks[principle.id] === 'na' ? 'var(--earth)' : 'var(--fog)',
                   color: checks[principle.id] === 'na' ? 'var(--white)' : 'var(--ink)',
-                  border: 'none',
+                  border: checks[principle.id] === 'na' ? '1px solid var(--earth)' : '1px solid transparent',
                   fontSize: 'var(--text-xs)',
                   fontWeight: 'var(--weight-bold)',
                   cursor: 'pointer',
                   transition: 'var(--transition-base)',
+                  borderRadius: '0',
                   whiteSpace: 'nowrap',
+                  minWidth: '48px',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (checks[principle.id] !== 'na') {
                     el.style.background = 'var(--earth)'
                     el.style.color = 'var(--white)'
+                    el.style.borderColor = 'var(--earth)'
                   }
                 }}
                 onMouseLeave={(e) => {
@@ -310,6 +324,7 @@ export default function ChecklistPage() {
                   if (checks[principle.id] !== 'na') {
                     el.style.background = 'var(--fog)'
                     el.style.color = 'var(--ink)'
+                    el.style.borderColor = 'transparent'
                   }
                 }}
               >

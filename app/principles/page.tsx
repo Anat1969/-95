@@ -52,11 +52,22 @@ export default function PrinciplesPage() {
               fontSize: 'var(--text-base)',
               color: 'var(--earth)',
               lineHeight: 'var(--leading-loose)',
-              maxWidth: '600px',
+              maxWidth: '700px',
+              marginBottom: 'var(--space-4)',
             }}
           >
             12 עקרונות מחקריים לתכנון מרחב בגובה עיני הילד בן 3. כל עקרון נתמך
-            בנתונים ממקורות מקצועיים.
+            בנתונים ממקורות מקצועיים. בחרו סוג פרויקט כדי לראות את העקרונות הרלוונטיים.
+          </p>
+          <p
+            style={{
+              fontSize: 'var(--text-sm)',
+              color: 'var(--forest)',
+              fontStyle: 'italic',
+              lineHeight: 'var(--leading-loose)',
+            }}
+          >
+            💡 לחצו על כל עקרון כדי לקרוא את המלא — מדוע חשוב, דרישות מינימום, ומקרי בוחן בפועל.
           </p>
         </div>
 
