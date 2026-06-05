@@ -7,6 +7,7 @@ import { DimensionBadge } from '@/components/DimensionBadge'
 import { SourceBadge } from '@/components/SourceBadge'
 import { PrincipleCard } from '@/components/PrincipleCard'
 import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { ImageUploadZone } from '@/components/ImageUploadZone'
 import { getRelatedPrinciples } from '@/lib/utils'
 
 export async function generateStaticParams() {
@@ -64,71 +65,83 @@ export default function PrincipleDetailPage({
           />
         </div>
 
-        {/* Hero section */}
+        {/* Hero section — two columns */}
         <div
           style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 380px',
+            gap: 'var(--space-10)',
             marginBottom: 'var(--space-12)',
             paddingBottom: 'var(--space-12)',
             borderBottom: 'var(--border)',
+            alignItems: 'start',
           }}
         >
-          <div
-            style={{
-              fontSize: 'var(--text-xs)',
-              fontFamily: 'var(--font-mono)',
-              fontWeight: 'var(--weight-bold)',
-              color: 'var(--earth)',
-              marginBottom: 'var(--space-2)',
-              textAlign: 'right',
-            }}
-          >
-            PRIORITY #{principle.priority.toString().padStart(2, '0')}
+          {/* Right column: text content */}
+          <div>
+            <div
+              style={{
+                fontSize: 'var(--text-xs)',
+                fontFamily: 'var(--font-mono)',
+                fontWeight: 'var(--weight-bold)',
+                color: 'var(--earth)',
+                marginBottom: 'var(--space-2)',
+                textAlign: 'right',
+              }}
+            >
+              PRIORITY #{principle.priority.toString().padStart(2, '0')}
+            </div>
+
+            <h1
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'var(--text-3xl)',
+                fontWeight: 'var(--weight-regular)',
+                lineHeight: 'var(--leading-snug)',
+                marginBottom: 'var(--space-6)',
+                color: 'var(--ink)',
+              }}
+            >
+              {principle.title}
+            </h1>
+
+            <p
+              style={{
+                fontSize: 'var(--text-lg)',
+                fontFamily: 'var(--font-sans)',
+                color: 'var(--earth)',
+                lineHeight: 'var(--leading-loose)',
+                marginBottom: 'var(--space-6)',
+              }}
+            >
+              {principle.summary}
+            </p>
+
+            {/* Tags */}
+            {principle.tags && principle.tags.length > 0 && (
+              <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
+                {principle.tags.map((tag: string) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      padding: 'var(--space-2) var(--space-3)',
+                      border: '1px solid var(--forest)',
+                      color: 'var(--forest)',
+                      display: 'inline-block',
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
 
-          <h1
-            style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'var(--text-3xl)',
-              fontWeight: 'var(--weight-regular)',
-              lineHeight: 'var(--leading-snug)',
-              marginBottom: 'var(--space-6)',
-              color: 'var(--ink)',
-            }}
-          >
-            {principle.title}
-          </h1>
-
-          <p
-            style={{
-              fontSize: 'var(--text-lg)',
-              fontFamily: 'var(--font-sans)',
-              color: 'var(--earth)',
-              lineHeight: 'var(--leading-loose)',
-              marginBottom: 'var(--space-6)',
-            }}
-          >
-            {principle.summary}
-          </p>
-
-          {/* Tags */}
-          {principle.tags && principle.tags.length > 0 && (
-            <div style={{ display: 'flex', gap: 'var(--space-2)', flexWrap: 'wrap' }}>
-              {principle.tags.map((tag: string) => (
-                <span
-                  key={tag}
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    padding: 'var(--space-2) var(--space-3)',
-                    border: '1px solid var(--forest)',
-                    color: 'var(--forest)',
-                    display: 'inline-block',
-                  }}
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
+          {/* Left column: image upload zone */}
+          <div>
+            <ImageUploadZone />
+          </div>
         </div>
 
         {/* Two-column content */}
