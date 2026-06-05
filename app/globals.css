@@ -1,0 +1,254 @@
+@import '../styles/tokens.css';
+
+/* Form elements inherit font family */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Main content padding to avoid Nav overlap */
+main {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+/* Smooth page transitions */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Responsive container */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+
+/* ---- Navigation ---- */
+.nav-logo {
+  font-size: var(--text-2xl);
+  font-family: var(--font-serif);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.nav-logo:hover {
+  color: var(--forest);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  color: var(--earth);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 6px;
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--forest);
+  border-bottom-color: var(--forest);
+}
+
+.nav-link-active {
+  color: var(--ink);
+  border-bottom: var(--border-ink);
+}
+
+.nav-link-active:hover {
+  color: var(--forest);
+}
+
+/* ---- Breadcrumbs ---- */
+.breadcrumb-link {
+  color: var(--earth);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.breadcrumb-link:hover {
+  color: var(--forest);
+  border-bottom: 1px solid var(--forest);
+}
+
+/* ---- Back link ---- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  color: var(--earth);
+  margin-bottom: var(--space-6);
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--forest);
+}
+
+/* ---- Buttons ---- */
+.source-link {
+  font-size: var(--text-sm);
+  color: var(--forest);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.source-link:hover {
+  color: var(--ink);
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: var(--space-4) var(--space-6);
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  transition: var(--transition-base);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.btn-cta:hover {
+  background: var(--paper);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.btn-outline-hover {
+  display: inline-block;
+  padding: var(--space-4) var(--space-8);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  transition: var(--transition-base);
+  cursor: pointer;
+  border: 1px solid var(--fog);
+}
+
+.btn-outline-hover:hover {
+  border-color: var(--ink);
+  color: var(--forest);
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  main {
+    padding-top: calc(var(--nav-height) + var(--space-4));
+  }
+
+  body {
+    font-size: var(--text-sm);
+  }
+
+  h1, h2, h3 {
+    line-height: var(--leading-tight);
+  }
+
+  /* Larger touch targets on mobile */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  a {
+    min-height: 44px;
+  }
+
+  /* Grid adjustments for mobile */
+  .grid-3,
+  .grid-2 {
+    gap: var(--space-3);
+  }
+
+  /* Reduce padding on mobile */
+  .container {
+    padding-inline: var(--space-4);
+  }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  body {
+    --page-x: 5vw;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  nav,
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+
+  main {
+    padding-top: 0 !important;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  p {
+    page-break-inside: avoid;
+  }
+}
