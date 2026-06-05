@@ -95,9 +95,10 @@ export default function ChecklistPage() {
           <div
             style={{
               background: 'var(--fog)',
-              height: '4px',
+              height: '6px',
               overflow: 'hidden',
               marginBottom: 'var(--space-4)',
+              borderRadius: '0',
             }}
           >
             <div
@@ -105,7 +106,8 @@ export default function ChecklistPage() {
                 background: 'var(--forest)',
                 height: '100%',
                 width: `${compliance.pct}%`,
-                transition: 'width var(--transition-base)',
+                transition: 'width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.1)',
               }}
             />
           </div>

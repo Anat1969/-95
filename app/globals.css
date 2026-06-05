@@ -34,3 +34,28 @@ input:focus-visible {
   outline: 2px solid var(--forest);
   outline-offset: 2px;
 }
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  main {
+    padding-top: calc(var(--nav-height) + var(--space-4));
+  }
+
+  body {
+    font-size: var(--text-sm);
+  }
+
+  h1, h2, h3 {
+    line-height: var(--leading-tight);
+  }
+
+  /* Larger touch targets on mobile */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  a {
+    min-height: 44px;
+  }
+}

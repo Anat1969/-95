@@ -44,6 +44,7 @@ export default function SourcesPage() {
               style={{
                 borderBottom: idx < sources.length - 1 ? 'var(--border)' : 'none',
                 paddingBottom: 'var(--space-12)',
+                animation: `slideInUp 0.5s ease-out ${idx * 0.1}s backwards`,
               }}
             >
               {/* Header */}

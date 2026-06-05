@@ -118,11 +118,17 @@ export default function PrinciplesPage() {
         {/* Grid */}
         <div className="grid grid-3">
           {filtered.length > 0 ? (
-            filtered.map((principle) => (
-              <PrincipleCard
+            filtered.map((principle, idx) => (
+              <div
                 key={principle.id}
-                principle={principle as any}
-              />
+                style={{
+                  animation: `slideInUp 0.4s ease-out ${idx * 0.05}s backwards`,
+                }}
+              >
+                <PrincipleCard
+                  principle={principle as any}
+                />
+              </div>
             ))
           ) : (
             <div
@@ -131,9 +137,15 @@ export default function PrinciplesPage() {
                 textAlign: 'center',
                 padding: 'var(--space-12)',
                 color: 'var(--earth)',
+                animation: 'fadeIn 0.4s ease-out',
               }}
             >
-              <p>לא נמצאו עקרונות המתאימים לסינון שבחרת.</p>
+              <p style={{ fontSize: 'var(--text-lg)', fontWeight: 'var(--weight-bold)', marginBottom: 'var(--space-3)' }}>
+                לא נמצאו עקרונות
+              </p>
+              <p style={{ fontSize: 'var(--text-sm)', color: 'var(--earth)' }}>
+                נסה לשנות את הסינון כדי לראות תוצאות שונות
+              </p>
             </div>
           )}
         </div>
