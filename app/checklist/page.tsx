@@ -175,185 +175,134 @@ export default function ChecklistPage() {
             <div
               key={principle.id}
               style={{
-                background: 'var(--white)',
+                background: `${principle.accentColor}0D`,
                 border: 'var(--border)',
                 padding: 0,
                 marginBottom: 'var(--space-4)',
                 display: 'grid',
-                gridTemplateColumns: '100px 1fr auto auto auto auto',
-                alignItems: 'center',
+                gridTemplateColumns: '1fr auto',
+                alignItems: 'stretch',
               }}
             >
-              {/* Image thumbnail */}
-              <Link
-                href={`/principles/${principle.id}`}
-                style={{
-                  display: 'block',
-                  width: '100px',
-                  height: '100%',
-                  minHeight: '90px',
-                  overflow: 'hidden',
-                }}
-              >
-                <img
-                  src={`/images/principles/${principle.id}.png`}
-                  alt={principle.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    display: 'block',
-                  }}
-                />
-              </Link>
-
-              {/* Title + summary */}
-              <div style={{ padding: 'var(--space-4) var(--space-5)' }}>
-                <Link
-                  href={`/principles/${principle.id}`}
-                  style={{
-                    fontSize: 'var(--text-sm)',
-                    fontFamily: 'var(--font-sans)',
-                    fontWeight: 'var(--weight-bold)',
-                    color: 'var(--ink)',
-                    marginBottom: 'var(--space-2)',
-                    display: 'block',
-                    textDecoration: 'none',
-                  }}
-                >
-                  {principle.title}
-                </Link>
+              {/* Main content area */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
+                {/* Large dimension badge */}
                 <div
                   style={{
-                    fontSize: 'var(--text-xs)',
-                    color: 'var(--earth)',
-                    lineHeight: 'var(--leading-normal)',
+                    background: principle.accentColor,
+                    color: 'var(--white)',
+                    fontFamily: 'var(--font-mono)',
+                    fontSize: 'var(--text-3xl)',
+                    fontWeight: 'var(--weight-bold)',
+                    padding: 'var(--space-6) var(--space-8)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    minWidth: '180px',
+                    textAlign: 'center',
+                    lineHeight: 1.1,
+                    alignSelf: 'stretch',
                   }}
                 >
-                  {principle.summary}
+                  {principle.dimension}
+                </div>
+
+                {/* Title + summary */}
+                <div style={{ padding: 'var(--space-5) var(--space-6)', flex: 1 }}>
+                  <Link
+                    href={`/principles/${principle.id}`}
+                    style={{
+                      fontSize: 'var(--text-lg)',
+                      fontFamily: 'var(--font-serif)',
+                      fontWeight: 'var(--weight-regular)',
+                      color: 'var(--ink)',
+                      marginBottom: 'var(--space-2)',
+                      display: 'block',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {principle.title}
+                  </Link>
+                  <div
+                    style={{
+                      fontSize: 'var(--text-sm)',
+                      color: 'var(--earth)',
+                      lineHeight: 'var(--leading-normal)',
+                    }}
+                  >
+                    {principle.summary}
+                  </div>
                 </div>
               </div>
 
-              {/* Dimension badge */}
-              <div
-                style={{
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 'var(--text-xs)',
-                  fontWeight: 'var(--weight-bold)',
-                  background: principle.accentColor,
-                  color: 'var(--white)',
-                  padding: 'var(--space-2) var(--space-3)',
-                }}
-              >
-                {principle.dimension}
+              {/* Minimal check buttons */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '2px', padding: '0 var(--space-3)' }}>
+                <button
+                  onClick={() => handleCheck(principle.id, checks[principle.id] === 'yes' ? null : 'yes')}
+                  title="עמדה בדרישה"
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    background: checks[principle.id] === 'yes' ? 'var(--forest)' : 'transparent',
+                    color: checks[principle.id] === 'yes' ? 'var(--white)' : 'var(--earth)',
+                    border: checks[principle.id] === 'yes' ? '1px solid var(--forest)' : '1px solid var(--fog)',
+                    fontSize: 'var(--text-sm)',
+                    cursor: 'pointer',
+                    transition: 'var(--transition-base)',
+                    borderRadius: '0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 0,
+                  }}
+                >
+                  ✓
+                </button>
+
+                <button
+                  onClick={() => handleCheck(principle.id, checks[principle.id] === 'no' ? null : 'no')}
+                  title="לא עמדה בדרישה"
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    background: checks[principle.id] === 'no' ? 'var(--error)' : 'transparent',
+                    color: checks[principle.id] === 'no' ? 'var(--white)' : 'var(--earth)',
+                    border: checks[principle.id] === 'no' ? '1px solid var(--error)' : '1px solid var(--fog)',
+                    fontSize: 'var(--text-sm)',
+                    cursor: 'pointer',
+                    transition: 'var(--transition-base)',
+                    borderRadius: '0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 0,
+                  }}
+                >
+                  ✗
+                </button>
+
+                <button
+                  onClick={() => handleCheck(principle.id, checks[principle.id] === 'na' ? null : 'na')}
+                  title="לא רלוונטי"
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    background: checks[principle.id] === 'na' ? 'var(--earth)' : 'transparent',
+                    color: checks[principle.id] === 'na' ? 'var(--white)' : 'var(--earth)',
+                    border: checks[principle.id] === 'na' ? '1px solid var(--earth)' : '1px solid var(--fog)',
+                    fontSize: 'var(--text-xs)',
+                    cursor: 'pointer',
+                    transition: 'var(--transition-base)',
+                    borderRadius: '0',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: 0,
+                  }}
+                >
+                  —
+                </button>
               </div>
-
-              {/* Buttons: Yes, No, NA */}
-              <button
-                onClick={() => handleCheck(principle.id, 'yes')}
-                title="עמדה בדרישה"
-                style={{
-                  padding: 'var(--space-3) var(--space-4)',
-                  background: checks[principle.id] === 'yes' ? 'var(--forest)' : 'var(--fog)',
-                  color: checks[principle.id] === 'yes' ? 'var(--white)' : 'var(--ink)',
-                  border: checks[principle.id] === 'yes' ? '1px solid var(--forest)' : '1px solid transparent',
-                  fontSize: 'var(--text-base)',
-                  fontWeight: 'var(--weight-bold)',
-                  cursor: 'pointer',
-                  transition: 'var(--transition-base)',
-                  borderRadius: '0',
-                  minWidth: '48px',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'yes') {
-                    el.style.background = 'var(--forest)'
-                    el.style.color = 'var(--white)'
-                    el.style.borderColor = 'var(--forest)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'yes') {
-                    el.style.background = 'var(--fog)'
-                    el.style.color = 'var(--ink)'
-                    el.style.borderColor = 'transparent'
-                  }
-                }}
-              >
-                ✓
-              </button>
-
-              <button
-                onClick={() => handleCheck(principle.id, 'no')}
-                title="לא עמדה בדרישה"
-                style={{
-                  padding: 'var(--space-3) var(--space-4)',
-                  background: checks[principle.id] === 'no' ? 'var(--error)' : 'var(--fog)',
-                  color: checks[principle.id] === 'no' ? 'var(--white)' : 'var(--ink)',
-                  border: checks[principle.id] === 'no' ? '1px solid var(--error)' : '1px solid transparent',
-                  fontSize: 'var(--text-base)',
-                  fontWeight: 'var(--weight-bold)',
-                  cursor: 'pointer',
-                  transition: 'var(--transition-base)',
-                  borderRadius: '0',
-                  minWidth: '48px',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'no') {
-                    el.style.background = 'var(--error)'
-                    el.style.color = 'var(--white)'
-                    el.style.borderColor = 'var(--error)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'no') {
-                    el.style.background = 'var(--fog)'
-                    el.style.color = 'var(--ink)'
-                    el.style.borderColor = 'transparent'
-                  }
-                }}
-              >
-                ✗
-              </button>
-
-              <button
-                onClick={() => handleCheck(principle.id, 'na')}
-                title="לא רלוונטי"
-                style={{
-                  padding: 'var(--space-3) var(--space-4)',
-                  background: checks[principle.id] === 'na' ? 'var(--earth)' : 'var(--fog)',
-                  color: checks[principle.id] === 'na' ? 'var(--white)' : 'var(--ink)',
-                  border: checks[principle.id] === 'na' ? '1px solid var(--earth)' : '1px solid transparent',
-                  fontSize: 'var(--text-xs)',
-                  fontWeight: 'var(--weight-bold)',
-                  cursor: 'pointer',
-                  transition: 'var(--transition-base)',
-                  borderRadius: '0',
-                  whiteSpace: 'nowrap',
-                  minWidth: '48px',
-                }}
-                onMouseEnter={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'na') {
-                    el.style.background = 'var(--earth)'
-                    el.style.color = 'var(--white)'
-                    el.style.borderColor = 'var(--earth)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  const el = e.currentTarget as HTMLElement
-                  if (checks[principle.id] !== 'na') {
-                    el.style.background = 'var(--fog)'
-                    el.style.color = 'var(--ink)'
-                    el.style.borderColor = 'transparent'
-                  }
-                }}
-              >
-                ל״ר
-              </button>
             </div>
           ))}
         </div>
