@@ -5,7 +5,7 @@
    תמיד להשתמש במשתנים מקובץ זה.
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Heebo:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=Rubik:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Heebo:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&family=Rubik:wght@400;500;600;700&family=Varela+Round&display=swap');
 
 :root {
 
@@ -35,6 +35,7 @@
   --font-serif: 'DM Serif Display', Georgia, serif;
   --font-sans:  'Heebo', sans-serif;
   --font-mono:  'JetBrains Mono', 'Courier New', monospace;
+  --font-round: 'Varela Round', 'Heebo', sans-serif;
 
   /* Scale */
   --text-xs:   11px;

@@ -6,6 +6,21 @@ import principles from '@/data/principles.json'
 import { calcCompliance } from '@/lib/utils'
 import type { ChecklistState } from '@/types'
 
+const dimensionHebrew: Record<string, string> = {
+  'sightline': '15 מ׳ מקס׳',
+  'stroller-access': '120 ס״מ מינימום',
+  'shade': '50% הצללה',
+  'surface-texture': '3+ מרקמים',
+  'adult-seating': '5 מ׳ רדיוס',
+  'traffic-separation': '3 מ׳ חיץ',
+  'walking-distance': '400 מ׳ הליכה',
+  'window-height': '60 ס״מ אדן',
+  'nature-element': '1 ל-200 מ״ר',
+  'zoning-clarity': '80–120 ס״מ',
+  'kindergarten-area': '55 מ״ר כיתה',
+  'lighting-safety': '50 לוקס',
+}
+
 export default function ChecklistPage() {
   const [checks, setChecks] = useState<ChecklistState>({})
   const [compliance, setCompliance] = useState({ pct: 0, checked: 0, failed: 0, na: 0, total: 0 })
@@ -246,16 +261,16 @@ export default function ChecklistPage() {
               >
                 <span
                   style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+                    fontFamily: 'var(--font-round)',
+                    fontSize: 'clamp(1.4rem, 2.8vw, 2.2rem)',
                     fontWeight: 'var(--weight-bold)',
                     color: principle.accentColor,
-                    lineHeight: 1,
+                    lineHeight: 1.2,
                     textAlign: 'center',
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {principle.dimension}
+                  {dimensionHebrew[principle.id] || principle.dimension}
                 </span>
               </div>
 
