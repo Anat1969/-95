@@ -27,7 +27,75 @@ main {
   padding-inline: var(--page-x);
 }
 
-/* Hover link styles (for server components that can't use JS event handlers) */
+/* ---- Navigation ---- */
+.nav-logo {
+  font-size: var(--text-2xl);
+  font-family: var(--font-serif);
+  font-weight: var(--weight-regular);
+  color: var(--ink);
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.nav-logo:hover {
+  color: var(--forest);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  font-weight: var(--weight-regular);
+  color: var(--earth);
+  border-bottom: 1px solid transparent;
+  padding-bottom: 6px;
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: var(--forest);
+  border-bottom-color: var(--forest);
+}
+
+.nav-link-active {
+  color: var(--ink);
+  border-bottom: var(--border-ink);
+}
+
+.nav-link-active:hover {
+  color: var(--forest);
+}
+
+/* ---- Breadcrumbs ---- */
+.breadcrumb-link {
+  color: var(--earth);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+.breadcrumb-link:hover {
+  color: var(--forest);
+  border-bottom: 1px solid var(--forest);
+}
+
+/* ---- Back link ---- */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-family: var(--font-sans);
+  color: var(--earth);
+  margin-bottom: var(--space-6);
+  transition: var(--transition-base);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  color: var(--forest);
+}
+
+/* ---- Buttons ---- */
 .source-link {
   font-size: var(--text-sm);
   color: var(--forest);
@@ -45,16 +113,38 @@ main {
   padding: var(--space-4) var(--space-6);
   background: var(--lime);
   color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
   font-weight: var(--weight-bold);
   text-decoration: none;
   transition: var(--transition-base);
   border: 1px solid transparent;
+  cursor: pointer;
 }
 
 .btn-cta:hover {
   background: var(--paper);
   border-color: var(--ink);
   color: var(--ink);
+}
+
+.btn-outline-hover {
+  display: inline-block;
+  padding: var(--space-4) var(--space-8);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  transition: var(--transition-base);
+  cursor: pointer;
+  border: 1px solid var(--fog);
+}
+
+.btn-outline-hover:hover {
+  border-color: var(--ink);
+  color: var(--forest);
 }
 
 /* Focus states for accessibility */

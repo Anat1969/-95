@@ -1,5 +1,3 @@
-'use client'
-
 import Link from 'next/link'
 
 interface BreadcrumbItem {
@@ -34,20 +32,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
         >
           <Link
             href={item.href}
-            style={{
-              color: 'var(--earth)',
-              textDecoration: 'none',
-              transition: 'var(--transition-base)',
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLElement).style.color = 'var(--forest)'
-              ;(e.currentTarget as HTMLElement).style.borderBottom =
-                '1px solid var(--forest)'
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLElement).style.color = 'var(--earth)'
-              ;(e.currentTarget as HTMLElement).style.borderBottom = 'none'
-            }}
+            className="breadcrumb-link"
           >
             {item.label}
           </Link>

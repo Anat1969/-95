@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -36,19 +35,7 @@ export function Nav() {
     >
       <Link
         href="/"
-        style={{
-          fontSize: 'var(--text-2xl)',
-          fontFamily: 'var(--font-serif)',
-          fontWeight: 'var(--weight-regular)',
-          color: 'var(--ink)',
-          transition: 'var(--transition-base)',
-        }}
-        onMouseEnter={(e) => {
-          (e.target as HTMLElement).style.color = 'var(--forest)'
-        }}
-        onMouseLeave={(e) => {
-          (e.target as HTMLElement).style.color = 'var(--ink)'
-        }}
+        className="nav-logo"
       >
         95°
       </Link>
@@ -62,31 +49,15 @@ export function Nav() {
           alignItems: 'center',
         }}
       >
-        {navItems.map((item) => {
-          const [isHovered, setIsHovered] = useState(false)
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              style={{
-                fontSize: 'var(--text-sm)',
-                fontFamily: 'var(--font-sans)',
-                fontWeight: 'var(--weight-regular)',
-                color: isActive(item.href) || isHovered ? 'var(--forest)' : isActive(item.href) ? 'var(--ink)' : 'var(--earth)',
-                borderBottom: isActive(item.href)
-                  ? 'var(--border-ink)'
-                  : isHovered ? '1px solid var(--forest)' : '1px solid transparent',
-                paddingBottom: '6px',
-                transition: 'var(--transition-base)',
-                textDecoration: 'none',
-              }}
-              onMouseEnter={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
-            >
-              {item.label}
-            </Link>
-          )
-        })}
+        {navItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`nav-link ${isActive(item.href) ? 'nav-link-active' : ''}`}
+          >
+            {item.label}
+          </Link>
+        ))}
       </div>
     </nav>
   )

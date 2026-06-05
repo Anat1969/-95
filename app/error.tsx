@@ -11,7 +11,6 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service here
     console.error(error)
   }, [error])
 
@@ -74,59 +73,14 @@ export default function Error({
         >
           <button
             onClick={reset}
-            style={{
-              padding: 'var(--space-4) var(--space-8)',
-              background: 'var(--lime)',
-              color: 'var(--ink)',
-              fontWeight: 'var(--weight-bold)',
-              textDecoration: 'none',
-              transition: 'var(--transition-base)',
-              cursor: 'pointer',
-              border: 'none',
-              fontFamily: 'var(--font-sans)',
-              fontSize: 'var(--text-base)',
-              borderRadius: '0',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--paper)'
-              el.style.border = '1px solid var(--ink)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--lime)'
-              el.style.border = 'none'
-            }}
+            className="btn-cta"
           >
             נסה שוב
           </button>
 
           <Link
             href="/"
-            style={{
-              display: 'inline-block',
-              padding: 'var(--space-4) var(--space-8)',
-              background: 'transparent',
-              color: 'var(--ink)',
-              fontWeight: 'var(--weight-bold)',
-              textDecoration: 'none',
-              transition: 'var(--transition-base)',
-              cursor: 'pointer',
-              border: '1px solid var(--fog)',
-              fontFamily: 'var(--font-sans)',
-              fontSize: 'var(--text-base)',
-              borderRadius: '0',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'var(--ink)'
-              el.style.color = 'var(--forest)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'var(--fog)'
-              el.style.color = 'var(--ink)'
-            }}
+            className="btn-outline-hover"
           >
             חזור לבית →
           </Link>

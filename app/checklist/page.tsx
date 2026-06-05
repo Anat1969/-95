@@ -377,25 +377,7 @@ export default function ChecklistPage() {
           </p>
           <Link
             href="/principles"
-            style={{
-              display: 'inline-block',
-              padding: 'var(--space-4) var(--space-8)',
-              background: 'var(--lime)',
-              color: 'var(--ink)',
-              fontWeight: 'var(--weight-bold)',
-              textDecoration: 'none',
-              transition: 'var(--transition-base)',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--paper)'
-              el.style.border = 'var(--border-ink)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--lime)'
-              el.style.border = 'none'
-            }}
+            className="btn-cta"
           >
             חזרה לעקרונות →
           </Link>
