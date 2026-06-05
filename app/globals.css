@@ -1,0 +1,36 @@
+@import '../styles/tokens.css';
+
+/* Form elements inherit font family */
+input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+/* Main content padding to avoid Nav overlap */
+main {
+  padding-top: var(--nav-height);
+  min-height: 100vh;
+}
+
+/* Smooth page transitions */
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Responsive container */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+
+/* Focus states for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
