@@ -17,10 +17,14 @@ export function PrinciplesList() {
   const [images, setImages] = useState<Record<string, string>>({})
 
   useEffect(() => {
+    const staticImages: Record<string, string> = {}
+    for (const p of principles as any[]) {
+      staticImages[p.id] = `/images/principles/${p.id}.jpg`
+    }
     fetch('/api/images')
       .then((res) => res.json())
-      .then((data) => setImages(data))
-      .catch(() => {})
+      .then((data) => setImages({ ...staticImages, ...data }))
+      .catch(() => setImages(staticImages))
   }, [])
 
   const handleImageUploaded = useCallback((principleId: string, url: string) => {

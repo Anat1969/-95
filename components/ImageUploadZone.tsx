@@ -13,12 +13,18 @@ export function ImageUploadZone({ principleId }: ImageUploadZoneProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    fetch('/api/images')
-      .then((res) => res.json())
-      .then((data) => {
-        if (data[principleId]) setImage(data[principleId])
-      })
-      .catch(() => {})
+    const staticUrl = `/images/principles/${principleId}.jpg`
+    const img = new Image()
+    img.onload = () => setImage(staticUrl)
+    img.onerror = () => {
+      fetch('/api/images')
+        .then((res) => res.json())
+        .then((data) => {
+          if (data[principleId]) setImage(data[principleId])
+        })
+        .catch(() => {})
+    }
+    img.src = staticUrl
   }, [principleId])
 
   const uploadFile = useCallback(async (file: File) => {
