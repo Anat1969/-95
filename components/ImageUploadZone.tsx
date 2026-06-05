@@ -1,20 +1,39 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 
-export function ImageUploadZone() {
+interface ImageUploadZoneProps {
+  storageKey: string
+}
+
+export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
   const [image, setImage] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(storageKey)
+      if (saved) setImage(saved)
+    } catch {}
+  }, [storageKey])
+
+  const saveImage = useCallback((dataUrl: string) => {
+    setImage(dataUrl)
+    try {
+      localStorage.setItem(storageKey, dataUrl)
+    } catch {}
+  }, [storageKey])
 
   const handleFile = useCallback((file: File) => {
     if (!file.type.startsWith('image/')) return
     const reader = new FileReader()
     reader.onload = (e) => {
-      setImage(e.target?.result as string)
+      const dataUrl = e.target?.result as string
+      saveImage(dataUrl)
     }
     reader.readAsDataURL(file)
-  }, [])
+  }, [saveImage])
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -55,8 +74,11 @@ export function ImageUploadZone() {
 
   const handleRemove = useCallback(() => {
     setImage(null)
+    try {
+      localStorage.removeItem(storageKey)
+    } catch {}
     if (fileInputRef.current) fileInputRef.current.value = ''
-  }, [])
+  }, [storageKey])
 
   if (image) {
     return (

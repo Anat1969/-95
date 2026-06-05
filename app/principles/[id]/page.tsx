@@ -140,7 +140,7 @@ export default function PrincipleDetailPage({
 
           {/* Left column: image upload zone */}
           <div>
-            <ImageUploadZone />
+            <ImageUploadZone storageKey={`95-img-${principle.id}`} />
           </div>
         </div>
 
