@@ -3,23 +3,8 @@
 import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import principles from '@/data/principles.json'
-import { calcCompliance } from '@/lib/utils'
+import { calcCompliance, DIMENSION_HEBREW } from '@/lib/utils'
 import type { ChecklistState } from '@/types'
-
-const dimensionHebrew: Record<string, string> = {
-  'sightline': '15 מ׳ מקס׳',
-  'stroller-access': '120 ס״מ מינימום',
-  'shade': '50% הצללה',
-  'surface-texture': '3+ מרקמים',
-  'adult-seating': '5 מ׳ רדיוס',
-  'traffic-separation': '3 מ׳ חיץ',
-  'walking-distance': '400 מ׳ הליכה',
-  'window-height': '60 ס״מ אדן',
-  'nature-element': '1 ל-200 מ״ר',
-  'zoning-clarity': '80–120 ס״מ',
-  'kindergarten-area': '55 מ״ר כיתה',
-  'lighting-safety': '50 לוקס',
-}
 
 export default function ChecklistPage() {
   const [checks, setChecks] = useState<ChecklistState>({})
@@ -270,7 +255,7 @@ export default function ChecklistPage() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {dimensionHebrew[principle.id] || principle.dimension}
+                  {DIMENSION_HEBREW[principle.id] || principle.dimension}
                 </span>
               </div>
 

@@ -183,6 +183,8 @@ export default function PrincipleDetailPage({
               <DimensionBadge
                 dimension={principle.dimension}
                 accentColor={principle.accentColor}
+                principleId={principle.id}
+                size="lg"
               />
             </div>
 

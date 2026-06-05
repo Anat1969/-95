@@ -66,6 +66,21 @@ export function getRelatedPrinciples(
     .slice(0, limit)
 }
 
+export const DIMENSION_HEBREW: Record<string, string> = {
+  'sightline': '15 מ׳ מקס׳',
+  'stroller-access': '120 ס״מ מינימום',
+  'shade': '50% הצללה',
+  'surface-texture': '3+ מרקמים',
+  'adult-seating': '5 מ׳ רדיוס',
+  'traffic-separation': '3 מ׳ חיץ',
+  'walking-distance': '400 מ׳ הליכה',
+  'window-height': '60 ס״מ אדן',
+  'nature-element': '1 ל-200 מ״ר',
+  'zoning-clarity': '80–120 ס״מ',
+  'kindergarten-area': '55 מ״ר כיתה',
+  'lighting-safety': '50 לוקס',
+}
+
 // צבע רקע לתג מקור
 export function getSourceColor(sourceId: string): string {
   const map: Record<string, string> = {

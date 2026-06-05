@@ -4,7 +4,6 @@ import { useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import type { Principle } from '@/types'
 import { DimensionBadge } from './DimensionBadge'
-import { SourceBadge } from './SourceBadge'
 
 interface PrincipleCardProps {
   principle: Principle
@@ -162,7 +161,7 @@ export function PrincipleCard({ principle, imageUrl, onImageUploaded }: Principl
             </p>
 
             <div style={{ marginTop: 'auto' }}>
-              <DimensionBadge dimension={principle.dimension} accentColor={principle.accentColor} />
+              <DimensionBadge dimension={principle.dimension} accentColor={principle.accentColor} principleId={principle.id} />
             </div>
 
             {principle.tags && principle.tags.length > 0 && (
@@ -184,13 +183,6 @@ export function PrincipleCard({ principle, imageUrl, onImageUploaded }: Principl
               </div>
             )}
 
-            {principle.sources && principle.sources.length > 0 && (
-              <div style={{ display: 'flex', gap: 'var(--space-2)' }}>
-                {principle.sources.map((sourceId) => (
-                  <SourceBadge key={sourceId} sourceId={sourceId} />
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </Link>
