@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useCallback } from 'react'
 import principles from '@/data/principles.json'
 import { filterPrinciples, getAllTags } from '@/lib/utils'
 import { PrincipleCard } from '@/components/PrincipleCard'
@@ -14,6 +14,18 @@ export function PrinciplesList() {
     phase: null,
     tag: null,
   })
+  const [images, setImages] = useState<Record<string, string>>({})
+
+  useEffect(() => {
+    fetch('/api/images')
+      .then((res) => res.json())
+      .then((data) => setImages(data))
+      .catch(() => {})
+  }, [])
+
+  const handleImageUploaded = useCallback((principleId: string, url: string) => {
+    setImages((prev) => ({ ...prev, [principleId]: url }))
+  }, [])
 
   const allTags = useMemo(() => getAllTags(principles as any), [])
   const projectTypeLabels = useMemo(
@@ -52,16 +64,6 @@ export function PrinciplesList() {
           >
             12 עקרונות מחקריים לתכנון מרחב בגובה עיני הילד בן 3. כל עקרון נתמך
             בנתונים ממקורות מקצועיים. בחרו סוג פרויקט כדי לראות את העקרונות הרלוונטיים.
-          </p>
-          <p
-            style={{
-              fontSize: 'var(--text-sm)',
-              color: 'var(--forest)',
-              fontStyle: 'italic',
-              lineHeight: 'var(--leading-loose)',
-            }}
-          >
-            💡 לחצו על כל עקרון כדי לקרוא את המלא — מדוע חשוב, דרישות מינימום, ומקרי בוחן בפועל.
           </p>
         </div>
 
@@ -132,6 +134,8 @@ export function PrinciplesList() {
               >
                 <PrincipleCard
                   principle={principle as any}
+                  imageUrl={images[principle.id]}
+                  onImageUploaded={handleImageUploaded}
                 />
               </div>
             ))

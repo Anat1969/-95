@@ -3,44 +3,49 @@
 import { useState, useRef, useCallback, useEffect } from 'react'
 
 interface ImageUploadZoneProps {
-  storageKey: string
+  principleId: string
 }
 
-export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
+export function ImageUploadZone({ principleId }: ImageUploadZoneProps) {
   const [image, setImage] = useState<string | null>(null)
   const [isDragging, setIsDragging] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey)
-      if (saved) setImage(saved)
-    } catch {}
-  }, [storageKey])
+    fetch('/api/images')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data[principleId]) setImage(data[principleId])
+      })
+      .catch(() => {})
+  }, [principleId])
 
-  const saveImage = useCallback((dataUrl: string) => {
-    setImage(dataUrl)
-    try {
-      localStorage.setItem(storageKey, dataUrl)
-    } catch {}
-  }, [storageKey])
-
-  const handleFile = useCallback((file: File) => {
+  const uploadFile = useCallback(async (file: File) => {
     if (!file.type.startsWith('image/')) return
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const dataUrl = e.target?.result as string
-      saveImage(dataUrl)
+    setUploading(true)
+    const preview = URL.createObjectURL(file)
+    setImage(preview)
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('id', principleId)
+      const res = await fetch('/api/upload', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (data.url) {
+        setImage(data.url)
+      }
+    } catch {} finally {
+      setUploading(false)
     }
-    reader.readAsDataURL(file)
-  }, [saveImage])
+  }, [principleId])
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault()
     setIsDragging(false)
     const file = e.dataTransfer.files[0]
-    if (file) handleFile(file)
-  }, [handleFile])
+    if (file) uploadFile(file)
+  }, [uploadFile])
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
     e.preventDefault()
@@ -57,11 +62,11 @@ export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
     for (let i = 0; i < items.length; i++) {
       if (items[i].type.startsWith('image/')) {
         const file = items[i].getAsFile()
-        if (file) handleFile(file)
+        if (file) uploadFile(file)
         break
       }
     }
-  }, [handleFile])
+  }, [uploadFile])
 
   const handleClick = useCallback(() => {
     fileInputRef.current?.click()
@@ -69,16 +74,8 @@ export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
 
   const handleInputChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) handleFile(file)
-  }, [handleFile])
-
-  const handleRemove = useCallback(() => {
-    setImage(null)
-    try {
-      localStorage.removeItem(storageKey)
-    } catch {}
-    if (fileInputRef.current) fileInputRef.current.value = ''
-  }, [storageKey])
+    if (file) uploadFile(file)
+  }, [uploadFile])
 
   if (image) {
     return (
@@ -89,7 +86,12 @@ export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
           aspectRatio: '4 / 3',
           border: 'var(--border)',
           overflow: 'hidden',
+          cursor: 'pointer',
         }}
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        onClick={handleClick}
       >
         <img
           src={image}
@@ -101,29 +103,28 @@ export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
             display: 'block',
           }}
         />
-        <button
-          onClick={handleRemove}
-          style={{
+        {uploading && (
+          <div style={{
             position: 'absolute',
-            top: 'var(--space-2)',
-            left: 'var(--space-2)',
-            width: '32px',
-            height: '32px',
-            background: 'var(--ink)',
-            color: 'var(--white)',
-            border: 'none',
-            cursor: 'pointer',
+            inset: 0,
+            background: 'rgba(0,0,0,0.4)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            color: 'var(--white)',
             fontFamily: 'var(--font-sans)',
-            fontSize: 'var(--text-base)',
-            fontWeight: 'var(--weight-bold)',
-            transition: 'var(--transition-base)',
-          }}
-        >
-          ×
-        </button>
+            fontSize: 'var(--text-sm)',
+          }}>
+            שומר...
+          </div>
+        )}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          onChange={handleInputChange}
+          style={{ display: 'none' }}
+        />
       </div>
     )
   }
@@ -151,53 +152,31 @@ export function ImageUploadZone({ storageKey }: ImageUploadZoneProps) {
         padding: 'var(--space-6)',
       }}
     >
-      <div
-        style={{
-          width: '48px',
-          height: '48px',
-          border: '2px solid var(--fog)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          marginBottom: 'var(--space-2)',
-        }}
-      >
-        <span
-          style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: 'var(--text-2xl)',
-            fontWeight: 'var(--weight-light)',
-            color: 'var(--earth)',
-            lineHeight: 1,
-          }}
-        >
-          +
+      {uploading ? (
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', color: 'var(--forest)' }}>
+          שומר...
         </span>
-      </div>
-
-      <span
-        style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: 'var(--text-sm)',
-          fontWeight: 'var(--weight-bold)',
-          color: 'var(--ink)',
-        }}
-      >
-        העלאת תמונה
-      </span>
-
-      <span
-        style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: 'var(--text-xs)',
-          color: 'var(--earth)',
-          textAlign: 'center',
-          lineHeight: 'var(--leading-normal)',
-        }}
-      >
-        גרור לכאן, הדבק, או לחץ לבחירה
-      </span>
-
+      ) : (
+        <>
+          <div style={{
+            width: '48px', height: '48px',
+            border: '2px solid var(--fog)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            marginBottom: 'var(--space-2)',
+          }}>
+            <span style={{
+              fontFamily: 'var(--font-sans)', fontSize: 'var(--text-2xl)',
+              fontWeight: 'var(--weight-light)', color: 'var(--earth)', lineHeight: 1,
+            }}>+</span>
+          </div>
+          <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-sm)', fontWeight: 'var(--weight-bold)', color: 'var(--ink)' }}>
+            העלאת תמונה
+          </span>
+          <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'var(--text-xs)', color: 'var(--earth)', textAlign: 'center', lineHeight: 'var(--leading-normal)' }}>
+            גרור לכאן, הדבק, או לחץ לבחירה
+          </span>
+        </>
+      )}
       <input
         ref={fileInputRef}
         type="file"
