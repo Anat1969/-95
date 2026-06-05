@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import type { Principle } from '@/types'
 import { DimensionBadge } from './DimensionBadge'
@@ -8,6 +11,8 @@ interface PrincipleCardProps {
 }
 
 export function PrincipleCard({ principle }: PrincipleCardProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <Link
       href={`/principles/${principle.id}`}
@@ -20,7 +25,7 @@ export function PrincipleCard({ principle }: PrincipleCardProps) {
         className="card"
         style={{
           background: 'var(--white)',
-          border: 'var(--border)',
+          border: isHovered ? '1px solid var(--ink)' : 'var(--border)',
           padding: 'var(--space-6)',
           transition: 'var(--transition-base)',
           cursor: 'pointer',
@@ -29,12 +34,8 @@ export function PrincipleCard({ principle }: PrincipleCardProps) {
           gap: 'var(--space-4)',
           height: '100%',
         }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.borderColor = 'var(--ink)'
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.borderColor = 'var(--fog)'
-        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {/* Priority number */}
         <div

@@ -1,10 +1,6 @@
-import Link from 'next/link'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: '95° Guide — מדריך תכנון ידידותי לילדות',
-  description: 'כלי עבודה לאדריכלים ומנהלי אגף לתכנון מרחב בגובה עין של ילד בן 3',
-}
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -125,16 +121,6 @@ export default function Home() {
               borderRadius: '0',
               minWidth: '280px',
             }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--paper)'
-              el.style.border = 'var(--border-ink)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--lime)'
-              el.style.border = 'none'
-            }}
           >
             אני מתכננת פרויקט
           </Link>
@@ -156,16 +142,6 @@ export default function Home() {
               borderRadius: '0',
               minWidth: '280px',
             }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--white)'
-              el.style.color = 'var(--ink)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.background = 'transparent'
-              el.style.color = 'var(--white)'
-            }}
           >
             אני בודקת תוכנית מוגשת
           </Link>
@@ -186,16 +162,6 @@ export default function Home() {
               textDecoration: 'none',
               borderRadius: '0',
               minWidth: '280px',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'var(--white)'
-              el.style.color = 'var(--white)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.borderColor = 'rgba(255, 255, 255, 0.3)'
-              el.style.color = 'var(--white)'
             }}
           >
             אני רוצה ללמוד

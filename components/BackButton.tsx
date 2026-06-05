@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
 
 interface BackButtonProps {
   href?: string
@@ -6,6 +9,8 @@ interface BackButtonProps {
 }
 
 export function BackButton({ href = '/', label = 'חזרה' }: BackButtonProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <Link
       href={href}
@@ -15,17 +20,13 @@ export function BackButton({ href = '/', label = 'חזרה' }: BackButtonProps) 
         gap: 'var(--space-2)',
         fontSize: 'var(--text-sm)',
         fontFamily: 'var(--font-sans)',
-        color: 'var(--earth)',
+        color: isHovered ? 'var(--forest)' : 'var(--earth)',
         marginBottom: 'var(--space-6)',
         transition: 'var(--transition-base)',
         textDecoration: 'none',
       }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLElement).style.color = 'var(--forest)'
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLElement).style.color = 'var(--earth)'
-      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <span>→</span>
       <span>{label}</span>

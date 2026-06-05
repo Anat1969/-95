@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import Link from 'next/link'
 import type { CaseStudy } from '@/types'
 
@@ -6,6 +9,8 @@ interface CaseCardProps {
 }
 
 export function CaseCard({ caseStudy }: CaseCardProps) {
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <Link
       href={`/cases/${caseStudy.id}`}
@@ -28,15 +33,10 @@ export function CaseCard({ caseStudy }: CaseCardProps) {
           minHeight: '280px',
           position: 'relative',
           overflow: 'hidden',
+          opacity: isHovered ? 0.85 : 1,
         }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget as HTMLElement
-          el.style.opacity = '0.85'
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget as HTMLElement
-          el.style.opacity = '1'
-        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {/* Meta info */}
         <div
