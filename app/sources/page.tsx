@@ -157,19 +157,7 @@ export default function SourcesPage() {
                     href={source.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--forest)',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      transition: 'var(--transition-base)',
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = 'var(--ink)'
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = 'var(--forest)'
-                    }}
+                    className="source-link"
                   >
                     קישור למקור ←
                   </a>
@@ -179,19 +167,7 @@ export default function SourcesPage() {
                     href={source.pdfUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{
-                      fontSize: 'var(--text-sm)',
-                      color: 'var(--forest)',
-                      textDecoration: 'underline',
-                      cursor: 'pointer',
-                      transition: 'var(--transition-base)',
-                    }}
-                    onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = 'var(--ink)'
-                    }}
-                    onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.color = 'var(--forest)'
-                    }}
+                    className="source-link"
                   >
                     הורד PDF ←
                   </a>

@@ -27,6 +27,36 @@ main {
   padding-inline: var(--page-x);
 }
 
+/* Hover link styles (for server components that can't use JS event handlers) */
+.source-link {
+  font-size: var(--text-sm);
+  color: var(--forest);
+  text-decoration: underline;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.source-link:hover {
+  color: var(--ink);
+}
+
+.btn-cta {
+  display: inline-block;
+  padding: var(--space-4) var(--space-6);
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: var(--weight-bold);
+  text-decoration: none;
+  transition: var(--transition-base);
+  border: 1px solid transparent;
+}
+
+.btn-cta:hover {
+  background: var(--paper);
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
 /* Focus states for accessibility */
 button:focus-visible,
 a:focus-visible,
