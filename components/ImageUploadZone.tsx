@@ -13,7 +13,7 @@ export function ImageUploadZone({ principleId }: ImageUploadZoneProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const staticUrl = `/images/principles/${principleId}.jpg`
+    const staticUrl = `/images/principles/${principleId}.png`
     const img = new Image()
     img.onload = () => setImage(staticUrl)
     img.onerror = () => {

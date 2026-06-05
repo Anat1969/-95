@@ -19,7 +19,7 @@ export function PrinciplesList() {
   useEffect(() => {
     const staticImages: Record<string, string> = {}
     for (const p of principles as any[]) {
-      staticImages[p.id] = `/images/principles/${p.id}.jpg`
+      staticImages[p.id] = `/images/principles/${p.id}.png`
     }
     fetch('/api/images')
       .then((res) => res.json())
