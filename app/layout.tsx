@@ -36,6 +36,8 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#F0EDE6" />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src="https://appofapp-gh.vercel.app/ai-menu.js"></script>
       </head>
       <body>
         <Nav />
