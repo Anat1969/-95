@@ -3,6 +3,15 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'ai-menu': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { chat?: string; research?: string }
+    }
+  }
+}
+
 export function Nav() {
   const pathname = usePathname()
 
@@ -59,6 +68,8 @@ export function Nav() {
           </Link>
         ))}
       </div>
+
+      <ai-menu style={{ marginInlineStart: 'var(--space-8)' }} />
     </nav>
   )
 }
