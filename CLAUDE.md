@@ -196,13 +196,14 @@ The top bar holds only the app name (links home), content navigation, and ONE lo
 - בדיקה: `npm run build && npx next start -p 3095 & node tests/walk.e2e.mjs`. ‏walk.js ו-ai-menu.js מוגשים מעותק מקומי של AppOfApp-GH.
 
 ## כתובת שנייה בלי מכסת Vercel
-- https://raw.githack.com/Anat1969/-95/static/ : עותק סטטי של main. ה-Action `static-preview.yml` בונה אותו עם `STATIC_EXPORT=1` ו-`BASE_PATH=/Anat1969/-95/static`, בלי `app/api`, ודוחף לענף `static`.
+- https://anat1969.github.io/-95/ : עותק סטטי של main ב-GitHub Pages, מענף `static`. ה-Action `static-preview.yml` בונה אותו עם `STATIC_EXPORT=1` ו-`BASE_PATH=/-95`, בלי `app/api`. הגדרה חד־פעמית: Settings > Pages > Deploy from a branch > `static`.
+- לא raw.githack: הוא מציג דף ביניים עם פרסומת לפני דפי HTML (נבדק 03.11.2026).
 - כל נתיב לקובץ ציבורי עובר דרך `asset()` מ-`lib/utils.ts`. אף פעם לא `/` חשוף.
 - ענפי `claude/*` ו-`static` לא נפרסים ב-Vercel (`vercel.json`).
 - `walk.js` נטען מ-Vercel, ואם הוא לא עונה, מ-Pages של AppOfApp-GH.
 
 ## יומן תיקונים
-- 03.11.2026: מכסת Vercel של החשבון נוצלה ("Deployment rate limited"), ולכן נוספה כתובת שנייה ב-githack.
+- 03.11.2026: מכסת Vercel של החשבון נוצלה ("Deployment rate limited"), ולכן נוספה כתובת שנייה ב-GitHub Pages.
 - 03.11.2026: נוסף דף `/walk`, מתוך סרטון על spaceplanner.co, באישור ענת. נוסף קישור "בגובה 95" בסרגל וכפתור בדף הבית. בנייד הקישורים בסרגל גוללים בתוכו, וכפתור A&I נשאר גלוי.
 
 ## למדנו בבנייה
