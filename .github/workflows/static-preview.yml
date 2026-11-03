@@ -1,5 +1,5 @@
-# Quota-free second address: a static copy of main on branch `static`, served by raw.githack.com.
-# https://raw.githack.com/Anat1969/-95/static/        (no Vercel deployment, no GitHub Pages setting needed)
+# Quota-free second address: a static copy of main on branch `static`, served by GitHub Pages
+# https://anat1969.github.io/-95/  (one-time setting: Settings > Pages > Deploy from a branch > static, / (root))
 # Image upload (app/api) needs a server, so it is left out of this copy; the built-in images are kept.
 name: static preview
 on:
@@ -25,7 +25,7 @@ jobs:
       - run: npm run build
         env:
           STATIC_EXPORT: '1'
-          BASE_PATH: /Anat1969/-95/static
+          BASE_PATH: /-95
       - name: Publish to branch static
         run: |
           cd out
