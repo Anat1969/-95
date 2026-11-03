@@ -20,6 +20,7 @@ export function Nav() {
     { href: '/checklist', label: 'צ׳קליסט' },
     { href: '/cases', label: 'מקרי בוחן' },
     { href: '/sources', label: 'מקורות' },
+    { href: '/walk', label: 'בגובה 95' },
   ]
 
   const isActive = (href: string) => {
@@ -52,6 +53,7 @@ export function Nav() {
       <div style={{ flex: 1 }} />
 
       <div
+        className="nav-links"
         style={{
           display: 'flex',
           gap: 'var(--space-8)',

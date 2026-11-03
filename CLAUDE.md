@@ -74,6 +74,7 @@
 | `/cases` | רשת 4 מקרי בוחן |
 | `/cases/[id]` | דף מקרה בוחן בודד |
 | `/sources` | מקורות מתועדים עם קישורים |
+| `/walk` | הליכה בגובה 95 ס״מ: כיכר מול גן ילדים, מצב נפוץ מול ההנחיות (אושר ע״י ענת, 03.11.2026) |
 
 ---
 
@@ -186,3 +187,17 @@ interface Principle {
 
 ## A&I logo button
 The top bar holds only the app name (links home), content navigation, and ONE logo button "אד' ענת שטיבלמן A&I" (`<ai-menu>` from https://appofapp-gh.vercel.app/ai-menu.js). Every editing and development action (העתקת קישור, שיחת הפיתוח, פרויקט המחקר, התקנת האפליקציה, edit mode, add, delete) lives only inside it, never as loose buttons. Standard: https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/ai-menu-standard.md
+
+## הליכה בגובה העיניים (`/walk`)
+- הרכיב המשותף `<space-walk>` נטען מ-https://appofapp-gh.vercel.app/walk.js. התקן: https://github.com/Anat1969/AppOfApp-GH/blob/main/docs/walk-standard.md
+- התוכנית נמצאת ב-`data/walk.json`. כל מידה בה לקוחה מ-`principles.json`, ולכל פריט נמדד יש `ref` לעיקרון שלו.
+- הכלל, שמוצג גם במסך: אלמנט אטום חוסם כשהחלק העליון שלו מגיע לגובה העיניים. מגבלה: גובה בלבד, בלי מרחק.
+- המצב נשמר בכתובת (`?eye=95&v=guide&view=top`).
+- בדיקה: `npm run build && npx next start -p 3095 & node tests/walk.e2e.mjs`. ‏walk.js ו-ai-menu.js מוגשים מעותק מקומי של AppOfApp-GH.
+
+## יומן תיקונים
+- 03.11.2026: נוסף דף `/walk`, מתוך סרטון על spaceplanner.co, באישור ענת. נוסף קישור "בגובה 95" בסרגל וכפתור בדף הבית. בנייד הקישורים בסרגל גוללים בתוכו, וכפתור A&I נשאר גלוי.
+
+## למדנו בבנייה
+- `next start` ישן שרץ ברקע מגיש בנייה קודמת, ולכן הבדיקה נכשלת בלי סיבה נראית. עוצרים את `next-server` לפני כל הרצה.
+- JetBrains Mono בלי עברית: תוויות בעברית בגופן הרגיל, ומספרים עם `tabular-nums`.

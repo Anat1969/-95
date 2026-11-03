@@ -252,3 +252,41 @@ input:focus-visible {
     page-break-inside: avoid;
   }
 }
+
+/* ---- Walk at eye height (/walk, shared <space-walk>) ---- */
+.walk-page {
+  height: calc(100vh - var(--nav-height));
+  background: var(--paper);
+}
+space-walk {
+  --sw-height: 100%;
+  --sw-ink: var(--ink);
+  --sw-paper: var(--paper);
+  --sw-card: var(--white);
+  --sw-line: var(--fog);
+  --sw-muted: #6f6253;
+  --sw-accent: var(--forest);
+  --sw-problem: var(--alert);
+  --sw-solution: var(--forest);
+  --sw-marker: #f3e37c;
+  --sw-font: var(--font-sans);
+  --sw-mono: var(--font-mono);
+  --sw-display: var(--font-serif);
+}
+@media (max-width: 860px) {
+  .walk-page { height: auto; }
+}
+
+/* Nav on narrow screens: links stay on one line and scroll inside the bar, the A&I button stays visible */
+.nav-link { white-space: nowrap; }
+@media (max-width: 640px) {
+  .nav-links {
+    min-width: 0;
+    flex: 0 1 auto;
+    overflow-x: auto;
+    scrollbar-width: none;
+    gap: var(--space-5) !important;
+    padding-bottom: 2px;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+}

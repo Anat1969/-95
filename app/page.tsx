@@ -166,6 +166,27 @@ export default function Home() {
           >
             אני רוצה ללמוד
           </Link>
+
+          <Link
+            href="/walk"
+            style={{
+              display: 'inline-block',
+              background: 'transparent',
+              color: 'var(--lime)',
+              padding: 'var(--space-4) var(--space-8)',
+              fontSize: 'var(--text-base)',
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 'var(--weight-bold)',
+              border: '1px solid var(--lime)',
+              cursor: 'pointer',
+              transition: 'var(--transition-base)',
+              textDecoration: 'none',
+              borderRadius: '0',
+              minWidth: '280px',
+            }}
+          >
+            לעמוד בגובה 95 ס״מ
+          </Link>
         </div>
       </div>
 
