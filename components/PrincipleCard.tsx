@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import type { Principle } from '@/types'
 import { DimensionBadge } from './DimensionBadge'
+import { asset } from '@/lib/utils'
 
 interface PrincipleCardProps {
   principle: Principle
@@ -111,7 +112,7 @@ export function PrincipleCard({ principle, imageUrl, onImageUploaded }: Principl
             style={{
               position: 'absolute',
               inset: 0,
-              backgroundImage: `url(${imageUrl || `/images/principles/${principle.id}.png`})`,
+              backgroundImage: `url(${imageUrl || asset(`/images/principles/${principle.id}.png`)})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               opacity: 0.12,

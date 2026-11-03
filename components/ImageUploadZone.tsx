@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
+import { asset } from '@/lib/utils'
 
 interface ImageUploadZoneProps {
   principleId: string
@@ -13,7 +14,7 @@ export function ImageUploadZone({ principleId }: ImageUploadZoneProps) {
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
-    const staticUrl = `/images/principles/${principleId}.png`
+    const staticUrl = asset(`/images/principles/${principleId}.png`)
     const img = new Image()
     img.onload = () => setImage(staticUrl)
     img.onerror = () => {

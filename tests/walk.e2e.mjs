@@ -16,8 +16,15 @@ async function open(opts, path) {
   const ctx = await browser.newContext(opts)
   const page = await ctx.newPage()
   const errors = []
-  page.on('pageerror', (e) => errors.push(e.message))
-  await page.route('https://appofapp-gh.vercel.app/walk.js', (r) => r.fulfill({ contentType: 'text/javascript', body: readFileSync(`${AOA}/walk.js`) }))
+  // the simulated wrong answer from Vercel is HTML parsed as a script: expected in RATE_LIMITED mode only
+  page.on('pageerror', (e) => { if (!(process.env.RATE_LIMITED && e.message.includes("Unexpected token '<'"))) errors.push(e.message) })
+  // RATE_LIMITED=1: Vercel answers with the portfolio's HTML (as on a rate-limited day); the page must fall back to Pages
+  if (process.env.RATE_LIMITED) {
+    await page.route('https://appofapp-gh.vercel.app/walk.js', (r) => r.fulfill({ contentType: 'text/html', body: '<!doctype html><html></html>' }))
+    await page.route('https://anat1969.github.io/AppOfApp-GH/walk.js', (r) => r.fulfill({ contentType: 'text/javascript', body: readFileSync(`${AOA}/walk.js`) }))
+  } else {
+    await page.route('https://appofapp-gh.vercel.app/walk.js', (r) => r.fulfill({ contentType: 'text/javascript', body: readFileSync(`${AOA}/walk.js`) }))
+  }
   await page.route('https://appofapp-gh.vercel.app/ai-menu.js', (r) => r.fulfill({ contentType: 'text/javascript', body: readFileSync(`${AOA}/ai-menu.js`) }))
   await page.goto(BASE + path, { waitUntil: 'networkidle' })
   return { ctx, page, errors }
@@ -57,7 +64,7 @@ const insight = (page) => sw(page, '.insight').innerText()
   // list row turns the view toward the element; principle link points to its page
   await sw(page, '[data-id="planter"]').click()
   await page.waitForTimeout(900)
-  ok(await sw(page, '[data-id="planter"] a').getAttribute('href') === '/principles/sightline', 'row links to its principle')
+  ok(await sw(page, '[data-id="planter"] a').getAttribute('href') === (process.env.REF_BASE || '/principles/') + 'sightline', 'row links to its principle')
   await page.screenshot({ path: `${SHOTS}/walk-look-planter.png` })
 
   await sw(page, '[data-view="top"]').click()
@@ -98,7 +105,7 @@ const insight = (page) => sw(page, '.insight').innerText()
 
 {
   const { ctx, page } = await open({ viewport: { width: 1440, height: 900 } }, '/')
-  ok(await page.locator('a[href="/walk"]').count() >= 2, 'home hero and top bar link to /walk')
+  ok(await page.locator('a[href$="/walk"], a[href$="/walk/"]').count() >= 2, 'home hero and top bar link to /walk')
   await page.screenshot({ path: `${SHOTS}/home.png` })
   await ctx.close()
 }
