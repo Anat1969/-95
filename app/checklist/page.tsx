@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from 'react'
 import Link from 'next/link'
 import principles from '@/data/principles.json'
-import { calcCompliance, DIMENSION_HEBREW } from '@/lib/utils'
+import { calcCompliance, DIMENSION_HEBREW, asset } from '@/lib/utils'
 import type { ChecklistState } from '@/types'
 
 export default function ChecklistPage() {
@@ -196,7 +196,7 @@ export default function ChecklistPage() {
                 }}
               >
                 <img
-                  src={`/images/principles/${principle.id}.png`}
+                  src={asset(`/images/principles/${principle.id}.png`)}
                   alt={principle.title}
                   style={{
                     width: '100%',

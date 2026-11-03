@@ -90,3 +90,6 @@ export function getSourceColor(sourceId: string): string {
   }
   return map[sourceId] ?? '#8C7B6B'
 }
+
+/** Public file path that also works under the static preview's base path. */
+export const asset = (p: string) => (process.env.NEXT_PUBLIC_BASE_PATH || '') + p

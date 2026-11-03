@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import principles from '@/data/principles.json'
-import { filterPrinciples, getAllTags } from '@/lib/utils'
+import { filterPrinciples, getAllTags, asset } from '@/lib/utils'
 import { PrincipleCard } from '@/components/PrincipleCard'
 import { FilterPills } from '@/components/FilterPills'
 import type { FilterState, ProjectType } from '@/types'
@@ -19,7 +19,7 @@ export function PrinciplesList() {
   useEffect(() => {
     const staticImages: Record<string, string> = {}
     for (const p of principles as any[]) {
-      staticImages[p.id] = `/images/principles/${p.id}.png`
+      staticImages[p.id] = asset(`/images/principles/${p.id}.png`)
     }
     fetch('/api/images')
       .then((res) => res.json())

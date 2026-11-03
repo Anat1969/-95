@@ -1,0 +1,39 @@
+# Quota-free second address: a static copy of main on branch `static`, served by raw.githack.com.
+# https://raw.githack.com/Anat1969/-95/static/        (no Vercel deployment, no GitHub Pages setting needed)
+# Image upload (app/api) needs a server, so it is left out of this copy; the built-in images are kept.
+name: static preview
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: static-preview
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: rm -rf app/api
+      - run: npm run build
+        env:
+          STATIC_EXPORT: '1'
+          BASE_PATH: /Anat1969/-95/static
+      - name: Publish to branch static
+        run: |
+          cd out
+          echo '{ "git": { "deploymentEnabled": false } }' > vercel.json
+          touch .nojekyll
+          git init -q -b static
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "static preview of ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" static

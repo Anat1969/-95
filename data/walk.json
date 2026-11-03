@@ -1,0 +1,76 @@
+{
+  "title": "כיכר מול גן ילדים · 22 × 19 מ׳",
+  "bounds": [-11, -8.5, 11, 11],
+  "ground": "#d9d3c4",
+  "sky": "#dfe5e8",
+  "spawn": { "x": 3.5, "z": 4.15, "yaw": 0 },
+  "heights": [
+    { "cm": 95, "label": "ילד בן 3" },
+    { "cm": 120, "label": "מבוגר יושב" },
+    { "cm": 160, "label": "מבוגר עומד" }
+  ],
+  "source": "מקורות: **Urban95**, קרן ברנרד ון ליר (Bernard van Leer Foundation), והנחיות התכנון של משרד החינוך. המידות נלקחו מ-12 העקרונות. גובה העיניים של מבוגר יושב ועומד הוא ממוצע אנתרופומטרי.",
+  "items": [
+    { "id": "facade", "type": "wall", "x": 0, "z": -8, "w": 22, "d": 0.5, "h": 3.6, "color": "#e4ddd0" },
+    { "id": "door", "type": "box", "x": 0, "z": -7.7, "w": 1.6, "d": 0.12, "h": 2.3, "color": "#2d4a3e", "solid": false },
+    { "id": "sidewalk", "type": "surface", "x": 0, "z": 3.5, "w": 22, "d": 2, "color": "#c9c3b6" },
+    { "id": "play", "type": "play", "x": -1.5, "z": -3.2, "w": 1.6, "d": 1.6, "h": 2.2, "color": "#c5502e" },
+    { "id": "bench", "type": "bench", "x": 5.6, "z": -2.5, "w": 1.8, "d": 0.6, "rot": 90, "label": "ספסל: גובה ישיבה", "value": "45 ס״מ", "check": "ok", "ref": "adult-seating", "refLabel": "ישיבה למבוגרים, 43–48 ס״מ" },
+    { "id": "lane", "type": "surface", "x": 0, "z": 9.25, "w": 22, "d": 0.12, "color": "#f4f1ea", "layer": 2 }
+  ],
+  "variants": [
+    {
+      "id": "common",
+      "label": "מצב נפוץ",
+      "tone": "problem",
+      "note": "**חומה אטומה**, חניה צמודה לכניסה, **גדר חיה** בין הספסל למשחק, ואדן חלון גבוה.",
+      "items": [
+        { "id": "asphalt", "type": "surface", "x": 0, "z": 7.75, "w": 22, "d": 6.5, "color": "#55554f", "layer": 1 },
+        { "id": "wall-a", "type": "wall", "x": -6, "z": 2.5, "w": 10, "d": 0.25, "h": 1.5, "color": "#b8ab96", "label": "חומה היקפית", "ref": "zoning-clarity", "refLabel": "תחימה ברורה, 80–120 ס״מ" },
+        { "id": "wall-b", "type": "wall", "x": 6, "z": 2.5, "w": 10, "d": 0.25, "h": 1.5, "color": "#b8ab96" },
+        { "id": "car-1", "type": "car", "x": -3.4, "z": 5.5, "w": 4.6, "d": 1.9, "h": 1.7, "color": "#3d4f63", "label": "רכב שטח חונה בכניסה", "ref": "traffic-separation", "refLabel": "הפרדת תנועה, 3 מ׳" },
+        { "id": "car-2", "type": "car", "x": 2.2, "z": 5.5, "w": 4.2, "d": 1.8, "h": 1.5, "color": "#8a3b2f", "label": "רכב חונה", "ref": "traffic-separation", "refLabel": "הפרדת תנועה, 3 מ׳" },
+        { "id": "car-3", "type": "car", "x": 7.6, "z": 5.5, "w": 4.2, "d": 1.8, "h": 1.45, "color": "#b9b4a8" },
+        { "id": "hedge", "type": "hedge", "x": 3.6, "z": -2.5, "w": 0.8, "d": 5, "h": 1.4, "label": "גדר חיה בין הספסל למשחק", "ref": "sightline", "refLabel": "שדה ראייה, מכשול עד 60 ס״מ" },
+        { "id": "win-1", "type": "window", "x": -6, "z": -7.68, "w": 2, "d": 0.16, "sill": 1.1, "top": 2.5, "label": "חלונות הגן: אדן", "ref": "window-height", "refLabel": "חלונות בגובה עיני ילד, אדן עד 60 ס״מ" },
+        { "id": "win-2", "type": "window", "x": -3, "z": -7.68, "w": 2, "d": 0.16, "sill": 1.1, "top": 2.5 },
+        { "id": "win-3", "type": "window", "x": 3, "z": -7.68, "w": 2, "d": 0.16, "sill": 1.1, "top": 2.5 },
+        { "id": "win-4", "type": "window", "x": 6, "z": -7.68, "w": 2, "d": 0.16, "sill": 1.1, "top": 2.5 },
+        { "id": "ground-1", "type": "surface", "x": -1.5, "z": -2.5, "w": 8, "d": 5.5, "color": "#8d8a84" },
+        { "id": "pole", "type": "pole", "x": 9, "z": 4.2, "h": 8, "label": "עמוד תאורה", "value": "8 מ׳", "check": "fail", "ref": "lighting-safety", "refLabel": "תאורה, מוט עד 4 מ׳" },
+        { "id": "shade", "type": "note", "label": "צל מעל הספסל", "value": "אין", "check": "fail", "ref": "shade", "refLabel": "צל, גובה 2.5 מ׳ לפחות" },
+        { "id": "buffer", "type": "note", "label": "מרווח מהכביש", "value": "0 מ׳", "check": "fail", "ref": "traffic-separation", "refLabel": "הפרדת תנועה, 3 מ׳" },
+        { "id": "textures", "type": "note", "label": "מרקמי קרקע באזור המשחק", "value": "1", "check": "fail", "ref": "surface-texture", "refLabel": "3 מרקמים לפחות" }
+      ]
+    },
+    {
+      "id": "guide",
+      "label": "לפי ההנחיות",
+      "tone": "solution",
+      "note": "**גדר שקופה של 100 ס״מ**, רצועה ירוקה של **3 מ׳** במקום חניה, אדנית נמוכה, צל, ואדן בגובה **60 ס״מ**.",
+      "items": [
+        { "id": "asphalt", "type": "surface", "x": 0, "z": 9.25, "w": 22, "d": 3.5, "color": "#55554f", "layer": 1 },
+        { "id": "green", "type": "surface", "x": 0, "z": 6, "w": 22, "d": 3, "color": "#8fb07a", "layer": 1 },
+        { "id": "fence-a", "type": "fence", "x": -6, "z": 2.5, "w": 10, "d": 0.06, "h": 1.0, "color": "#2d4a3e", "label": "גדר היקפית שקופה", "ref": "zoning-clarity", "refLabel": "תחימה ברורה, 80–120 ס״מ" },
+        { "id": "fence-b", "type": "fence", "x": 6, "z": 2.5, "w": 10, "d": 0.06, "h": 1.0, "color": "#2d4a3e" },
+        { "id": "tree-1", "type": "tree", "x": -8, "z": 6, "h": 5, "crown": 2.6 },
+        { "id": "tree-2", "type": "tree", "x": -3.5, "z": 6, "h": 5.4, "crown": 2.8 },
+        { "id": "tree-3", "type": "tree", "x": 3.5, "z": 6, "h": 5, "crown": 2.6 },
+        { "id": "tree-4", "type": "tree", "x": 8, "z": 6, "h": 5.2, "crown": 2.7 },
+        { "id": "planter", "type": "planter", "x": 3.6, "z": -2.5, "w": 0.8, "d": 5, "h": 0.5, "label": "אדנית בין הספסל למשחק", "ref": "sightline", "refLabel": "שדה ראייה, מכשול עד 60 ס״מ" },
+        { "id": "win-1", "type": "window", "x": -6, "z": -7.68, "w": 2, "d": 0.16, "sill": 0.6, "top": 2.3, "label": "חלונות הגן: אדן", "ref": "window-height", "refLabel": "חלונות בגובה עיני ילד, אדן עד 60 ס״מ" },
+        { "id": "win-2", "type": "window", "x": -3, "z": -7.68, "w": 2, "d": 0.16, "sill": 0.6, "top": 2.3 },
+        { "id": "win-3", "type": "window", "x": 3, "z": -7.68, "w": 2, "d": 0.16, "sill": 0.6, "top": 2.3 },
+        { "id": "win-4", "type": "window", "x": 6, "z": -7.68, "w": 2, "d": 0.16, "sill": 0.6, "top": 2.3 },
+        { "id": "sand", "type": "surface", "x": -4.25, "z": -2.5, "w": 2.5, "d": 5.5, "color": "#e3cf9a" },
+        { "id": "grass", "type": "surface", "x": -1.5, "z": -2.5, "w": 3, "d": 5.5, "color": "#8fb07a" },
+        { "id": "deck", "type": "surface", "x": 1.25, "z": -2.5, "w": 2.5, "d": 5.5, "color": "#a9825a" },
+        { "id": "shade", "type": "shade", "x": 5.6, "z": -2.5, "w": 2.6, "d": 3, "h": 2.5, "label": "צל מעל הספסל", "value": "250 ס״מ", "check": "ok", "ref": "shade", "refLabel": "צל, גובה 2.5 מ׳ לפחות" },
+        { "id": "pole", "type": "pole", "x": 9, "z": 3.3, "h": 4, "label": "עמוד תאורה", "value": "4 מ׳", "check": "ok", "ref": "lighting-safety", "refLabel": "תאורה, מוט עד 4 מ׳" },
+        { "id": "pole-2", "type": "pole", "x": -9, "z": 3.3, "h": 4 },
+        { "id": "buffer", "type": "note", "label": "מרווח מהכביש", "value": "3 מ׳", "check": "ok", "ref": "traffic-separation", "refLabel": "הפרדת תנועה, 3 מ׳" },
+        { "id": "textures", "type": "note", "label": "מרקמי קרקע באזור המשחק", "value": "3", "check": "ok", "ref": "surface-texture", "refLabel": "3 מרקמים לפחות" }
+      ]
+    }
+  ]
+}
