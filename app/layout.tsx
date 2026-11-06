@@ -38,6 +38,8 @@ export default function RootLayout({
         <meta name="theme-color" content="#F0EDE6" />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src="https://appofapp-gh.vercel.app/ai-menu.js"></script>
+        {/* גשר ארק ובינה: פס תחתון רק כשמגיעים עם ?ab_q=...&ab_back=... */}
+        <script src="https://arc-and-bina.vercel.app/bridge.js" defer></script>
       </head>
       <body>
         <Nav />
