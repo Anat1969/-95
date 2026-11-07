@@ -7,7 +7,7 @@ declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
-      'ai-menu': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { chat?: string; research?: string }
+      'ai-menu': React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> & { chat?: string; research?: string; brand?: string }
     }
   }
 }
@@ -71,7 +71,7 @@ export function Nav() {
         ))}
       </div>
 
-      <ai-menu style={{ marginInlineStart: 'var(--space-8)' }} />
+      <ai-menu brand="ashdod" style={{ marginInlineStart: 'var(--space-8)' }} />
     </nav>
   )
 }

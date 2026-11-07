@@ -202,7 +202,11 @@ The top bar holds only the app name (links home), content navigation, and ONE lo
 - ענפי `claude/*` ו-`static` לא נפרסים ב-Vercel (`vercel.json`).
 - `walk.js` נטען מ-Vercel, ואם הוא לא עונה, מ-Pages של AppOfApp-GH.
 
+## בעלות ולוגו
+אפליקציה של העירייה (`data.owner = "ashdod"`). בסרגל `<ai-menu brand="ashdod">`: לוגו עיריית אשדוד, ובתוכו אותו תפריט.
+
 ## יומן תיקונים
+- 07.11.2026: לוגו עיריית אשדוד בסרגל במקום A&I, באישור ענת ("אשר").
 - 03.11.2026: מכסת Vercel של החשבון נוצלה ("Deployment rate limited"), ולכן נוספה כתובת שנייה ב-GitHub Pages.
 - 03.11.2026: נוסף דף `/walk`, מתוך סרטון על spaceplanner.co, באישור ענת. נוסף קישור "בגובה 95" בסרגל וכפתור בדף הבית. בנייד הקישורים בסרגל גוללים בתוכו, וכפתור A&I נשאר גלוי.
 - 06.11.2026: גשר מארק ובינה (https://arc-and-bina.vercel.app). `app/layout.tsx` טוען את `https://arc-and-bina.vercel.app/bridge.js` (defer). מי שמגיע עם `?ab_q=...&ab_back=...` רואה פס תחתון עם שאלת המחקר וכפתור חזרה. בלי הפרמטרים הסקריפט לא עושה כלום. הקישורים הנכנסים: "תולעת" אל `/principles/surface-texture`, "זרע" אל `/cases/tira`. המיפוי בצד השני: `BRIDGES` ב-`src/data.js` של ArcAndBina-GH.
