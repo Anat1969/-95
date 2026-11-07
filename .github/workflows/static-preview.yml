@@ -1,5 +1,5 @@
-# Quota-free second address: a static copy of main on branch `static`, served by GitHub Pages
-# https://anat1969.github.io/-95/  (one-time setting: Settings > Pages > Deploy from a branch > static, / (root))
+# Quota-free second address: a static copy of main on GitHub Pages, https://anat1969.github.io/-95/
+# The job turns Pages on by itself (configure-pages, enablement), so nobody has to open the repo settings.
 # Image upload (app/api) needs a server, so it is left out of this copy; the built-in images are kept.
 name: static preview
 on:
@@ -7,9 +7,11 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 concurrency:
-  group: static-preview
+  group: pages
   cancel-in-progress: true
 jobs:
   build:
@@ -26,14 +28,19 @@ jobs:
         env:
           STATIC_EXPORT: '1'
           BASE_PATH: /-95
-      - name: Publish to branch static
-        run: |
-          cd out
-          echo '{ "git": { "deploymentEnabled": false } }' > vercel.json
-          touch .nojekyll
-          git init -q -b static
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -q -m "static preview of ${GITHUB_SHA}"
-          git push -f "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" static
+      - run: touch out/.nojekyll
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

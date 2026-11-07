@@ -196,7 +196,7 @@ The top bar holds only the app name (links home), content navigation, and ONE lo
 - בדיקה: `npm run build && npx next start -p 3095 & node tests/walk.e2e.mjs`. ‏walk.js ו-ai-menu.js מוגשים מעותק מקומי של AppOfApp-GH.
 
 ## כתובת שנייה בלי מכסת Vercel
-- https://anat1969.github.io/-95/ : עותק סטטי של main ב-GitHub Pages, מענף `static`. ה-Action `static-preview.yml` בונה אותו עם `STATIC_EXPORT=1` ו-`BASE_PATH=/-95`, בלי `app/api`. הגדרה חד־פעמית: Settings > Pages > Deploy from a branch > `static`.
+- https://anat1969.github.io/-95/ : עותק סטטי של main ב-GitHub Pages, מענף `static`. ה-Action `static-preview.yml` בונה אותו עם `STATIC_EXPORT=1` ו-`BASE_PATH=/-95`, בלי `app/api`. ה-Action מפעיל את Pages בעצמו (`configure-pages` עם `enablement`) ופורס ישירות, בלי הגדרה ידנית.
 - לא raw.githack: הוא מציג דף ביניים עם פרסומת לפני דפי HTML (נבדק 03.11.2026).
 - כל נתיב לקובץ ציבורי עובר דרך `asset()` מ-`lib/utils.ts`. אף פעם לא `/` חשוף.
 - ענפי `claude/*` ו-`static` לא נפרסים ב-Vercel (`vercel.json`).
